@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>HiDef</Profile>
+  <Platform>MacOSX</Platform>
+  <Config />
+  <SourceFiles>
+    <File>/Users/Rapumeisteri/Desktop/Harjoitustyo/versiohallinta/Harjoitustyo/Harjoitustyo2/Harjoitustyo2/Content/santapaha.png</File>
+    <File>/Users/Rapumeisteri/Desktop/Harjoitustyo/versiohallinta/Harjoitustyo/Harjoitustyo2/Harjoitustyo2/Content/Pukki.png</File>
+    <File>/Users/Rapumeisteri/Desktop/Harjoitustyo/versiohallinta/Harjoitustyo/Harjoitustyo2/Harjoitustyo2/Content/Talo.png</File>
+    <File>/Users/Rapumeisteri/Desktop/Harjoitustyo/versiohallinta/Harjoitustyo/Harjoitustyo2/Harjoitustyo2/Content/beer1.png</File>
+    <File>/Users/Rapumeisteri/Desktop/Harjoitustyo/versiohallinta/Harjoitustyo/Harjoitustyo2/Harjoitustyo2/Content/IsoKalja.png</File>
+    <File>/Users/samulinykanen/Projects/Harjoitustyo/versiohallinta/Harjoitustyo/Harjoitustyo2/Harjoitustyo2/Content/santapaha.png</File>
+    <File>/Users/samulinykanen/Projects/Harjoitustyo/versiohallinta/Harjoitustyo/Harjoitustyo2/Harjoitustyo2/Content/Pukki.png</File>
+    <File>/Users/samulinykanen/Projects/Harjoitustyo/versiohallinta/Harjoitustyo/Harjoitustyo2/Harjoitustyo2/Content/Talo.png</File>
+    <File>/Users/samulinykanen/Projects/Harjoitustyo/versiohallinta/Harjoitustyo/Harjoitustyo2/Harjoitustyo2/Content/beer1.png</File>
+    <File>/Users/samulinykanen/Projects/Harjoitustyo/versiohallinta/Harjoitustyo/Harjoitustyo2/Harjoitustyo2/Content/IsoKalja.png</File>
+    <File>/Users/samulinykanen/Projects/Harjoitustyo/Harjoitustyo2/Harjoitustyo2/Content/Pahapukki.png</File>
+    <File>/Users/samulinykanen/Projects/Harjoitustyo/Harjoitustyo2/Harjoitustyo2/Content/Pukki.png</File>
+    <File>/Users/samulinykanen/Projects/Harjoitustyo/Harjoitustyo2/Harjoitustyo2/Content/Talo.png</File>
+    <File>/Users/samulinykanen/Projects/Harjoitustyo/Harjoitustyo2/Harjoitustyo2/Content/beer1.png</File>
+    <File>/Users/samulinykanen/Projects/Harjoitustyo/Harjoitustyo2/Harjoitustyo2/Content/IsoKalja.png</File>
+  </SourceFiles>
+</SourceFileCollection>

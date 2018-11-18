@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Harjoitustyo2", "Harjoitustyo2\Harjoitustyo2.csproj", "{74298952-5709-4F1B-B984-AF81B71F49CC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{74298952-5709-4F1B-B984-AF81B71F49CC}.Debug|x86.ActiveCfg = Debug|x86
+		{74298952-5709-4F1B-B984-AF81B71F49CC}.Debug|x86.Build.0 = Debug|x86
+		{74298952-5709-4F1B-B984-AF81B71F49CC}.Release|x86.ActiveCfg = Release|x86
+		{74298952-5709-4F1B-B984-AF81B71F49CC}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+EndGlobal

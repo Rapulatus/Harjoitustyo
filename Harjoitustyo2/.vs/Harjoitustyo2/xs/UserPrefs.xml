@@ -1,0 +1,16 @@
+﻿<Properties StartupConfiguration="{74298952-5709-4F1B-B984-AF81B71F49CC}|Default">
+  <MonoDevelop.Ide.ItemProperties.Harjoitustyo2 PreferredExecutionTarget="Test1" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Harjoitustyo2.cs">
+    <Files>
+      <File FileName="../../../../../../Projects/Demo9/Teht2/Teht2.cs" Line="26" Column="1" />
+      <File FileName="Ohjelma.cs" Line="1" Column="1" />
+      <File FileName="Harjoitustyo2.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
