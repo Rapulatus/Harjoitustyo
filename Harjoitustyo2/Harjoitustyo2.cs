@@ -33,7 +33,6 @@ public class Harjoitustyo2 : PhysicsGame
     /// <summary> 
     /// Pistää pelin käyntiin kutsumalla tarvittavat aliohjelmat
     /// </summary>
-    /// <param name=" ">kentan numeroa vastaava kentta</param>
     /// <returns> </returns>
 
     public override void Begin()
@@ -43,6 +42,7 @@ public class Harjoitustyo2 : PhysicsGame
         Camera.ZoomToLevel();
         // LuoKentta(mikaKentta);
         // LisaaNappaimet();
+        Valikko();
 
 
         // MediaPlayer.Play("taustamusa");
@@ -57,9 +57,7 @@ public class Harjoitustyo2 : PhysicsGame
     /// <summary>
     /// Pelin aloitusvalikon aliohjelma
     /// </summary>
-    /// <param name="valikonkohdat">Alkuvalikon valikot</param>
     /// <returns>Alkuvalikon valikot</returns>
-
 
     private void Valikko()
     {
@@ -72,12 +70,12 @@ public class Harjoitustyo2 : PhysicsGame
         kohta2.Position = new Vector(0, 0);
         valikonKohdat.Add(kohta2);
 
-
         foreach (Label valikonKohta in valikonKohdat)        // Lisätään kaikki luodut kohdat peliin foreach-silmukalla
         {
             Add(valikonKohta);
         }
-        Mouse.ListenOn(kohta1, MouseButton.Left, ButtonState.Pressed, SeuraavaKentta, null);   /// Hiiren näppäinkuunnellin
+
+        Mouse.ListenOn(kohta1, MouseButton.Left, ButtonState.Pressed, SeuraavaKentta, null);/// Hiiren näppäinkuunnellin
         Mouse.ListenOn(kohta2, MouseButton.Left, ButtonState.Pressed, Exit, null);             /// Hiiren näppäinkuunnellin  
         Mouse.ListenMovement(1.0, ValikossaLiikkuminen, null);                                 /// Hiiren liikkentunnistin
 
@@ -86,7 +84,6 @@ public class Harjoitustyo2 : PhysicsGame
     /// <summary>
     /// Aliohjelma joka tarkastelee hiiren liikettä valikossa
     /// </summary>
-    /// <param name="ValokossaLiikkuminen">Valikkoa tarkasteleva aliohjelma</param>
     /// <returns> Aliohjelman mikä tarkkailee hiiren liikettä valikossa</returns>
     private void ValikossaLiikkuminen()
     {
@@ -100,11 +97,8 @@ public class Harjoitustyo2 : PhysicsGame
             {
                 kohta.TextColor = Color.Black;
             }
-
         }
     }
-
-
 
     /// <summary> 
     /// Luodaan kentta järjestyksen mukaisesti
@@ -124,40 +118,32 @@ public class Harjoitustyo2 : PhysicsGame
         Level.CreateBorders();
         Level.Background.CreateGradient(Color.White, Color.Pink);
 
-
     }
-
-
-
 
     /// <summary> 
     /// Seuraavaan kenttään siirtävä aliohjelma
     /// </summary>
     /// <param name=" "> </param>
     /// <returns> </returns>
-
     private void SeuraavaKentta()
     {
-        Valikko();
         ClearAll();
 
         if (kenttaNro == 1) LuoKentta(Kentta1);
         else if (kenttaNro == 2) LuoKentta(Kentta2);
-        // else if (kenttaNro == 3) LuoKentta();
-        else if (kenttaNro > 2) Exit();
+        //else if (kenttaNro == 3) LuoKentta();
+        //else if (kenttaNro > 2) Exit();
 
         LisaaNappaimet();
         LuoPistelaskuri();
         LuoVihollinen();
 
-
     }
-
 
     /// <summary> 
     /// Näppäinkomennot peliin luova aliohjelma
     /// </summary>
-    /// <param name=" ">kentän numero</param>
+    /// <param name="">kentän numero</param>
     /// <returns> </returns>
     private void LisaaNappaimet()
     {
@@ -175,21 +161,6 @@ public class Harjoitustyo2 : PhysicsGame
         ControllerOne.Listen(Button.DPadRight, ButtonState.Down, Liikuta, "Pelaaja liikkuu oikealle", pelaaja1, nopeus);
         ControllerOne.Listen(Button.A, ButtonState.Pressed, Hyppaa, "Pelaaja hyppää", pelaaja1, hyppyNopeus); */
     }
-
-    /// <summary> 
-    /// Aliohjelma joka luo peliin tason
-    /// </summary>
-    /// <param name=" "></param>
-    /// <returns>tason</returns>
-
-    /*private PhysicsObject valikonKohdat()
-    {
-        PhysicsObject valikko = PhysicsObject.CreateStaticObject(40, 40);
-        valikko.Color = Color.Red;
-        valikko.Shape = Shape.Rectangle;
-        return valikko;
-    }*/
-
 
     private PhysicsObject LisaaTaso()
     {
@@ -293,13 +264,25 @@ public class Harjoitustyo2 : PhysicsGame
 
         if ((kohde.Tag == "maali") && (pisteLaskuri.Value >= 3))
         {
+            if (kenttaNro < 2)
+            {
+                kenttaNro++;
+                SeuraavaKentta();
+            }
+            else 
+            {
+                kenttaNro = 1;
+                Valikko();
+            }
+
             // maaliAani.Play();  TODO: tähän joku ääni jos haluaa osumasta semmosen
-            // MessageDisplay.Add("Hienoa, olet maalissa!");
-            kenttaNro++;
-            SeuraavaKentta();
+            //MessageDisplay.Add("Hienoa, olet maalissa!");
 
         }
+       
     }
+
+
 
     /// <summary> 
     /// Aliohjelma joka keskeyttää pelin hahmon osuessa vihuun
@@ -313,9 +296,9 @@ public class Harjoitustyo2 : PhysicsGame
         {
             // maaliAani.Play();  TODO: tähän joku ääni jos haluaa osumasta semmosen
             hahmo.Destroy();
-            Exit();
-
+            Valikko();
         }
+
     }
 
     /// <summary> 
@@ -372,7 +355,7 @@ public class Harjoitustyo2 : PhysicsGame
     /// <summary> 
     /// Aliohjelma joka luo peliin kentän
     /// </summary>
-    /// <param name=" "></param>
+    /// <param name=""></param>
     /// <returns> </returns>
     private char[,] Kentta1 =
    {
