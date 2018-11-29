@@ -15,6 +15,9 @@ public class Harjoitustyo2 : PhysicsGame
     private const int RUUDUN_KOKO = 40;
     private const int TASON_KOKO = 20;
     private int kenttaNro = 1;
+    List<Label> valikonKohdat;
+
+
 
     private IntMeter pisteLaskuri;
     private PlatformCharacter pelaaja1;
@@ -32,10 +35,9 @@ public class Harjoitustyo2 : PhysicsGame
     /// </summary>
     /// <param name=" ">kentan numeroa vastaava kentta</param>
     /// <returns> </returns>
+
     public override void Begin()
     {
-
-
         // LuoKentta(mikaKentta);
         SeuraavaKentta();
         Camera.ZoomToLevel();
@@ -51,6 +53,59 @@ public class Harjoitustyo2 : PhysicsGame
         Keyboard.Listen(Key.Escape, ButtonState.Pressed, ConfirmExit, "Lopeta peli");
 
     }
+
+    /// <summary>
+    /// Pelin aloitusvalikon aliohjelma
+    /// </summary>
+    /// <param name="valikonkohdat">Alkuvalikon valikot</param>
+    /// <returns>Alkuvalikon valikot</returns>
+
+
+    private void Valikko()
+    {
+        ClearAll();                                       // Tyhjennetään kenttä kaikista peliolioista
+        valikonKohdat = new List<Label>();                  // Alustetaan lista, johon valikon kohdat tulevat
+        Label kohta1 = new Label("Aloita uusi peli");       // Luodaan uusi Label-olio, joka toimii uuden pelin aloituskohtana
+        kohta1.Position = new Vector(0, 40);                // Asetetaan valikon ensimmäinen kohta hieman kentän keskikohdan yläpuolelle
+        valikonKohdat.Add(kohta1);                          // Lisätään luotu valikon kohta listaan jossa kohtia säilytetään
+        Label kohta2 = new Label("Lopeta peli");
+        kohta2.Position = new Vector(0, 0);
+        valikonKohdat.Add(kohta2);
+
+
+        foreach (Label valikonKohta in valikonKohdat)        // Lisätään kaikki luodut kohdat peliin foreach-silmukalla
+        {
+            Add(valikonKohta);
+        }
+        Mouse.ListenOn(kohta1, MouseButton.Left, ButtonState.Pressed, SeuraavaKentta, null);   /// Hiiren näppäinkuunnellin
+        Mouse.ListenOn(kohta2, MouseButton.Left, ButtonState.Pressed, Exit, null);             /// Hiiren näppäinkuunnellin  
+        Mouse.ListenMovement(1.0, ValikossaLiikkuminen, null);                                 /// Hiiren liikkentunnistin
+
+
+    }
+    /// <summary>
+    /// Aliohjelma joka tarkastelee hiiren liikettä valikossa
+    /// </summary>
+    /// <param name="ValokossaLiikkuminen">Valikkoa tarkasteleva aliohjelma</param>
+    /// <returns> Aliohjelman mikä tarkkailee hiiren liikettä valikossa</returns>
+    private void ValikossaLiikkuminen()
+    {
+        foreach (Label kohta in valikonKohdat)
+        {
+            if (Mouse.IsCursorOn(kohta))
+            {
+                kohta.TextColor = Color.Red;
+            }
+            else
+            {
+                kohta.TextColor = Color.Black;
+            }
+
+        }
+    }
+
+
+
     /// <summary> 
     /// Luodaan kentta järjestyksen mukaisesti
     /// </summary>
@@ -58,6 +113,7 @@ public class Harjoitustyo2 : PhysicsGame
     /// <returns>kentän numeroa vastaavan kentän</returns>
     private void LuoKentta(char[,] mikaKentta)
     {
+        ClearAll();
         Gravity = new Vector(0, -666);
         TileMap kentta = new TileMap(mikaKentta);
         kentta['='] = LisaaTaso;
@@ -68,16 +124,21 @@ public class Harjoitustyo2 : PhysicsGame
         Level.CreateBorders();
         Level.Background.CreateGradient(Color.White, Color.Pink);
 
+
     }
+
+
+
 
     /// <summary> 
     /// Seuraavaan kenttään siirtävä aliohjelma
     /// </summary>
     /// <param name=" "> </param>
     /// <returns> </returns>
+
     private void SeuraavaKentta()
     {
-
+        Valikko();
         ClearAll();
 
         if (kenttaNro == 1) LuoKentta(Kentta1);
@@ -107,8 +168,9 @@ public class Harjoitustyo2 : PhysicsGame
         Keyboard.Listen(Key.Right, ButtonState.Down, Liikuta, "Liikkuu oikealle", pelaaja1, nopeus);
         Keyboard.Listen(Key.Up, ButtonState.Pressed, Hyppaa, "Pelaaja hyppää", pelaaja1, hyppyNopeus);
 
-        /* ControllerOne.Listen(Button.Back, ButtonState.Pressed, Exit, "Poistu pelistä");
 
+        /// x-boxin ohjaimen näppäinkomennot
+        /* ControllerOne.Listen(Button.Back, ButtonState.Pressed, Exit, "Poistu pelistä");
         ControllerOne.Listen(Button.DPadLeft, ButtonState.Down, Liikuta, "Pelaaja liikkuu vasemmalle", pelaaja1, -nopeus);
         ControllerOne.Listen(Button.DPadRight, ButtonState.Down, Liikuta, "Pelaaja liikkuu oikealle", pelaaja1, nopeus);
         ControllerOne.Listen(Button.A, ButtonState.Pressed, Hyppaa, "Pelaaja hyppää", pelaaja1, hyppyNopeus); */
@@ -119,6 +181,16 @@ public class Harjoitustyo2 : PhysicsGame
     /// </summary>
     /// <param name=" "></param>
     /// <returns>tason</returns>
+
+    /*private PhysicsObject valikonKohdat()
+    {
+        PhysicsObject valikko = PhysicsObject.CreateStaticObject(40, 40);
+        valikko.Color = Color.Red;
+        valikko.Shape = Shape.Rectangle;
+        return valikko;
+    }*/
+
+
     private PhysicsObject LisaaTaso()
     {
         PhysicsObject taso = PhysicsObject.CreateStaticObject(TASON_KOKO, TASON_KOKO);
@@ -237,7 +309,6 @@ public class Harjoitustyo2 : PhysicsGame
     /// <returns> </returns>
     private void OsuVihuun(PhysicsObject hahmo, PhysicsObject kohde)
     {
-
         if (kohde.Tag == "vihollinen")
         {
             // maaliAani.Play();  TODO: tähän joku ääni jos haluaa osumasta semmosen

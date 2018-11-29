@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>/Users/Rapumeisteri/Desktop/Harjoitustyo/versiohallinta/Harjoitustyo/Harjoitustyo2/Harjoitustyo2/Content/IsoKalja.png</SourceFile>
+  <SourceFile>/Users/Rapumeisteri/Desktop/Harjoitustyo2/Harjoitustyo2/Content/IsoKalja.png</SourceFile>
   <SourceTime>2018-10-31T12:08:54+02:00</SourceTime>
-  <DestFile>/Users/Rapumeisteri/Desktop/Harjoitustyo/versiohallinta/Harjoitustyo/Harjoitustyo2/Harjoitustyo2/Content/./IsoKalja.xnb</DestFile>
-  <DestTime>2018-11-06T10:24:18.899893+02:00</DestTime>
+  <DestFile>/Users/Rapumeisteri/Desktop/Harjoitustyo2/Harjoitustyo2/Content/./IsoKalja.xnb</DestFile>
+  <DestTime>2018-11-22T15:24:46.67785+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-09-14T12:21:46.666013+03:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
