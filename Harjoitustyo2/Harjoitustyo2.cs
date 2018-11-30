@@ -5,30 +5,33 @@ using Jypeli.Assets;
 using Jypeli.Controls;
 using Jypeli.Widgets;
 
+/// <summary>
+/// Harjoitustyo2. PöhnäPukki-peli
+/// @author(s) Samuli Nykänen, Aleksi Kauppinen
+/// versio 6.66
+/// </summary>
+
 public class Harjoitustyo2 : PhysicsGame
 {
     // TODO: silmukka Samuli: ks. demo 6, tehtävä Tauno 2.4
     // TODO: silmukka Aleksi: ks. demo 7, tehtävä Tauno 1B
 
-    private const double nopeus = 200;
-    private const double hyppyNopeus = 330;
+    private const double NOPEUS = 200;
+    private const double HYPPYNOPEUS = 330;
     private const int RUUDUN_KOKO = 40;
     private const int TASON_KOKO = 20;
     private int kenttaNro = 1;
-    List<Label> valikonKohdat;
-
-
-
+    private List<Label> valikonKohdat;
     private IntMeter pisteLaskuri;
     private PlatformCharacter pelaaja1;
-
-
     private Image pelaajanKuva = LoadImage("Pukki");
     private Image pulloKuva = LoadImage("beer1");
     private Image maaliKuva = LoadImage("Talo");
     private Image vihunKuva = LoadImage("santapaha");
 
     // SoundEffect maaliAani = LoadSoundEffect("maali");
+
+
 
     /// <summary> 
     /// Pistää pelin käyntiin kutsumalla tarvittavat aliohjelmat
@@ -53,6 +56,8 @@ public class Harjoitustyo2 : PhysicsGame
         Keyboard.Listen(Key.Escape, ButtonState.Pressed, ConfirmExit, "Lopeta peli");
 
     }
+
+
 
     /// <summary>
     /// Pelin aloitusvalikon aliohjelma
@@ -81,6 +86,8 @@ public class Harjoitustyo2 : PhysicsGame
 
 
     }
+
+
     /// <summary>
     /// Aliohjelma joka tarkastelee hiiren liikettä valikossa
     /// </summary>
@@ -99,6 +106,7 @@ public class Harjoitustyo2 : PhysicsGame
             }
         }
     }
+
 
     /// <summary> 
     /// Luodaan kentta järjestyksen mukaisesti
@@ -120,6 +128,7 @@ public class Harjoitustyo2 : PhysicsGame
 
     }
 
+
     /// <summary> 
     /// Seuraavaan kenttään siirtävä aliohjelma
     /// </summary>
@@ -140,6 +149,7 @@ public class Harjoitustyo2 : PhysicsGame
 
     }
 
+
     /// <summary> 
     /// Näppäinkomennot peliin luova aliohjelma
     /// </summary>
@@ -150,9 +160,9 @@ public class Harjoitustyo2 : PhysicsGame
         Keyboard.Listen(Key.F1, ButtonState.Pressed, ShowControlHelp, "Näytä ohjeet");
         Keyboard.Listen(Key.Escape, ButtonState.Pressed, Exit, "Poistu pelistä");
 
-        Keyboard.Listen(Key.Left, ButtonState.Down, Liikuta, "Liikkuu vasemmalle", pelaaja1, -nopeus);
-        Keyboard.Listen(Key.Right, ButtonState.Down, Liikuta, "Liikkuu oikealle", pelaaja1, nopeus);
-        Keyboard.Listen(Key.Up, ButtonState.Pressed, Hyppaa, "Pelaaja hyppää", pelaaja1, hyppyNopeus);
+        Keyboard.Listen(Key.Left, ButtonState.Down, Liikuta, "Liikkuu vasemmalle", pelaaja1, -NOPEUS);
+        Keyboard.Listen(Key.Right, ButtonState.Down, Liikuta, "Liikkuu oikealle", pelaaja1, NOPEUS);
+        Keyboard.Listen(Key.Up, ButtonState.Pressed, Hyppaa, "Pelaaja hyppää", pelaaja1, HYPPYNOPEUS);
 
 
         /// x-boxin ohjaimen näppäinkomennot
@@ -170,6 +180,7 @@ public class Harjoitustyo2 : PhysicsGame
         return taso;
     }
 
+
     /// <summary> 
     /// Aliohjelma joka luo peliin pullon
     /// </summary>
@@ -183,6 +194,7 @@ public class Harjoitustyo2 : PhysicsGame
         return pullo;
     }
 
+
     /// <summary> 
     /// Aliohjelma joka luo peliin maalin
     /// </summary>
@@ -195,6 +207,7 @@ public class Harjoitustyo2 : PhysicsGame
         maali.Tag = "maali";
         return maali;
     }
+
 
     /// <summary> 
     /// Aliohjelma joka luo peliin pelaajan
@@ -213,27 +226,32 @@ public class Harjoitustyo2 : PhysicsGame
         return pelaaja1;
     }
 
+
     /// <summary> 
     /// Aliohjelma joka liikuttaa hahmoa tietyllä nopeudella
     /// </summary>
     /// <param name="hahmo"></param>
-    /// <param name="nopeus"></param>
+    /// <param name="NOPEUS"></param>
     /// <returns> </returns>
     private void Liikuta(PlatformCharacter hahmo, double nopeus)
     {
         hahmo.Walk(nopeus);
     }
 
+
+
     /// <summary> 
     /// Aliohjelma joka hypäyttää hahmon tietyllä nopeudella
     /// </summary>
     /// <param name="hahmo"></param>
-    /// <param name="nopeus"></param>
+    /// <param name="NOPEUS"></param>
     /// <returns> </returns>
     private void Hyppaa(PlatformCharacter hahmo, double nopeus)
     {
         hahmo.Jump(nopeus);
     }
+
+
 
     /// <summary> 
     /// Aliohjelma joka tuhoaa pullon ja antaa siitä pisteen osuttaessa
@@ -243,7 +261,7 @@ public class Harjoitustyo2 : PhysicsGame
     /// <returns> </returns>
     private void OsuPulloon(PhysicsObject hahmo, PhysicsObject kohde)
     {
-        if (kohde.Tag == "pullo")
+        if ((string)kohde.Tag == "pullo")
         {
             // maaliAani.Play();  TODO: tähän joku ääni jos haluaa osumasta semmosen
             //MessageDisplay.Add("Nastrovja!");
@@ -252,6 +270,8 @@ public class Harjoitustyo2 : PhysicsGame
 
         }
     }
+
+
 
     /// <summary> 
     /// Aliohjelma joka vaihtaa kentän numeroa maaliin osuttaessa
@@ -262,7 +282,7 @@ public class Harjoitustyo2 : PhysicsGame
     private void OsuMaaliin(PhysicsObject hahmo, PhysicsObject kohde)
     {
 
-        if ((kohde.Tag == "maali") && (pisteLaskuri.Value >= 3))
+        if (((string)kohde.Tag == "maali") && (pisteLaskuri.Value >= 3))
         {
             if (kenttaNro < 2)
             {
@@ -292,7 +312,7 @@ public class Harjoitustyo2 : PhysicsGame
     /// <returns> </returns>
     private void OsuVihuun(PhysicsObject hahmo, PhysicsObject kohde)
     {
-        if (kohde.Tag == "vihollinen")
+        if ((string)kohde.Tag == "vihollinen")
         {
             // maaliAani.Play();  TODO: tähän joku ääni jos haluaa osumasta semmosen
             hahmo.Destroy();
@@ -300,6 +320,8 @@ public class Harjoitustyo2 : PhysicsGame
         }
 
     }
+
+
 
     /// <summary> 
     /// Aliohjelma joka lisää peliin pistelaskurin
@@ -322,6 +344,8 @@ public class Harjoitustyo2 : PhysicsGame
         Add(pisteNaytto);
     }
 
+
+
     /// <summary> 
     /// Aliohjelma joka lisää peliin vihollisen joka syntyy tietyn ajan välein randomiin paikkaan
     /// </summary>
@@ -340,6 +364,8 @@ public class Harjoitustyo2 : PhysicsGame
         ajastin.Start(); 
     }
 
+
+
     /// <summary> 
     /// Aliohjelma joka luo vihollisen randomiin paikkaan
     /// </summary>
@@ -351,6 +377,7 @@ public class Harjoitustyo2 : PhysicsGame
         vihollinen.Position = RandomGen.NextVector(Level.BoundingRect);
         // p.Color = RandomGen.NextColor();
     }
+
 
     /// <summary> 
     /// Aliohjelma joka luo peliin kentän
@@ -368,6 +395,8 @@ public class Harjoitustyo2 : PhysicsGame
         {' ', ' ', '=', ' ', ' ', ' ', '=', ' ', '=', ' ', ' '},
         {' ', ' ', ' ', '=', ' ', '=', ' ', ' ', ' ', '=', 'N'},
     };
+
+
 
     /// <summary> 
     /// Aliohjelma joka luo peliin kentän
