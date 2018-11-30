@@ -5,28 +5,56 @@ using Jypeli.Assets;
 using Jypeli.Controls;
 using Jypeli.Widgets;
 
+/// <summary>
+/// Harjoitustyo2. PöhnäPukki-peli.
+/// @author Samuli Nykänen, Aleksi Kauppinen
+/// versio 30.11.2018
+/// </summary>
+
 public class Harjoitustyo2 : PhysicsGame
 {
     // TODO: silmukka Samuli: ks. demo 6, tehtävä Tauno 2.4
     // TODO: silmukka Aleksi: ks. demo 7, tehtävä Tauno 1B
 
-    private const double nopeus = 200;
-    private const double hyppyNopeus = 330;
+    private const double NOPEUS = 200;
+    private const double HYPPYNOPEUS = 330;
     private const int RUUDUN_KOKO = 40;
     private const int TASON_KOKO = 20;
     private int kenttaNro = 1;
-    List<Label> valikonKohdat;
-
-
-
+    private List<Label> valikonKohdat;
     private IntMeter pisteLaskuri;
     private PlatformCharacter pelaaja1;
 
 
-    private Image pelaajanKuva = LoadImage("Pukki");
-    private Image pulloKuva = LoadImage("beer1");
-    private Image maaliKuva = LoadImage("Talo");
-    private Image vihunKuva = LoadImage("santapaha");
+    private static readonly Image pelaajanKuva = LoadImage("Pukki");
+    private static readonly Image pulloKuva = LoadImage("beer1");
+    private static readonly Image maaliKuva = LoadImage("Talo");
+    private static readonly Image vihunKuva = LoadImage("santapaha");
+
+    private char[,] Kentta1 =
+  {
+        {' ', ' ', 'M', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+        {' ', ' ', '=', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' '},
+        {' ', ' ', ' ', '=', ' ', ' ', '=', ' ', ' ', ' ', ' '},
+        {'*', ' ', ' ', ' ', ' ', '=', ' ', ' ', '=', '=', '*'},
+        {'=', ' ', ' ', ' ', '=', ' ', ' ', '=', ' ', ' ', '='},
+        {' ', '=', ' ', ' ', ' ', '=', ' ', ' ', '*', ' ', ' '},
+        {' ', ' ', '=', ' ', ' ', ' ', '=', ' ', '=', ' ', ' '},
+        {' ', ' ', ' ', '=', ' ', '=', ' ', ' ', ' ', '=', 'N'},
+    };
+
+
+    private char[,] Kentta2 =
+    {
+        {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'M', ' '},
+        {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' '},
+        {' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' '},
+        {' ', '*', '=', ' ', ' ', '=', ' ', ' ', ' ', ' ', '*'},
+        {' ', '=', ' ', '=', '=', ' ', ' ', ' ', '=', '=', '='},
+        {' ', ' ', ' ', ' ', ' ', '=', ' ', '=', ' ', ' ', ' '},
+        {' ', 'N', ' ', ' ', ' ', ' ', ' ', '*', '=', '*', '*'},
+        {'=', '=', ' ', '=', ' ', ' ', '=', '=', '=', '=', ' '},
+    };
 
     // SoundEffect maaliAani = LoadSoundEffect("maali");
 
@@ -37,22 +65,17 @@ public class Harjoitustyo2 : PhysicsGame
 
     public override void Begin()
     {
-        // LuoKentta(mikaKentta);
         SeuraavaKentta();
         Camera.ZoomToLevel();
-        // LuoKentta(mikaKentta);
-        // LisaaNappaimet();
         Valikko();
-
-
         // MediaPlayer.Play("taustamusa");
-
         Camera.Follow(pelaaja1);
         Camera.StayInLevel = true;
         PhoneBackButton.Listen(ConfirmExit, "Lopeta peli");
         Keyboard.Listen(Key.Escape, ButtonState.Pressed, ConfirmExit, "Lopeta peli");
 
     }
+
 
     /// <summary>
     /// Pelin aloitusvalikon aliohjelma
@@ -78,9 +101,9 @@ public class Harjoitustyo2 : PhysicsGame
         Mouse.ListenOn(kohta1, MouseButton.Left, ButtonState.Pressed, SeuraavaKentta, null);/// Hiiren näppäinkuunnellin
         Mouse.ListenOn(kohta2, MouseButton.Left, ButtonState.Pressed, Exit, null);             /// Hiiren näppäinkuunnellin  
         Mouse.ListenMovement(1.0, ValikossaLiikkuminen, null);                                 /// Hiiren liikkentunnistin
-
-
     }
+
+
     /// <summary>
     /// Aliohjelma joka tarkastelee hiiren liikettä valikossa
     /// </summary>
@@ -100,6 +123,7 @@ public class Harjoitustyo2 : PhysicsGame
         }
     }
 
+
     /// <summary> 
     /// Luodaan kentta järjestyksen mukaisesti
     /// </summary>
@@ -117,8 +141,8 @@ public class Harjoitustyo2 : PhysicsGame
         kentta.Insert(RUUDUN_KOKO, RUUDUN_KOKO);
         Level.CreateBorders();
         Level.Background.CreateGradient(Color.White, Color.Pink);
-
     }
+
 
     /// <summary> 
     /// Seuraavaan kenttään siirtävä aliohjelma
@@ -128,17 +152,17 @@ public class Harjoitustyo2 : PhysicsGame
     private void SeuraavaKentta()
     {
         ClearAll();
-
         if (kenttaNro == 1) LuoKentta(Kentta1);
         else if (kenttaNro == 2) LuoKentta(Kentta2);
-        //else if (kenttaNro == 3) LuoKentta();
-        //else if (kenttaNro > 2) Exit();
+        // else if (kenttaNro == 3) LuoKentta();
+        // else if (kenttaNro > 2) Exit();
 
         LisaaNappaimet();
         LuoPistelaskuri();
         LuoVihollinen();
 
     }
+
 
     /// <summary> 
     /// Näppäinkomennot peliin luova aliohjelma
@@ -150,9 +174,9 @@ public class Harjoitustyo2 : PhysicsGame
         Keyboard.Listen(Key.F1, ButtonState.Pressed, ShowControlHelp, "Näytä ohjeet");
         Keyboard.Listen(Key.Escape, ButtonState.Pressed, Exit, "Poistu pelistä");
 
-        Keyboard.Listen(Key.Left, ButtonState.Down, Liikuta, "Liikkuu vasemmalle", pelaaja1, -nopeus);
-        Keyboard.Listen(Key.Right, ButtonState.Down, Liikuta, "Liikkuu oikealle", pelaaja1, nopeus);
-        Keyboard.Listen(Key.Up, ButtonState.Pressed, Hyppaa, "Pelaaja hyppää", pelaaja1, hyppyNopeus);
+        Keyboard.Listen(Key.Left, ButtonState.Down, Liikuta, "Liikkuu vasemmalle", pelaaja1, -NOPEUS);
+        Keyboard.Listen(Key.Right, ButtonState.Down, Liikuta, "Liikkuu oikealle", pelaaja1, NOPEUS);
+        Keyboard.Listen(Key.Up, ButtonState.Pressed, Hyppaa, "Pelaaja hyppää", pelaaja1, HYPPYNOPEUS);
 
 
         /// x-boxin ohjaimen näppäinkomennot
@@ -162,6 +186,7 @@ public class Harjoitustyo2 : PhysicsGame
         ControllerOne.Listen(Button.A, ButtonState.Pressed, Hyppaa, "Pelaaja hyppää", pelaaja1, hyppyNopeus); */
     }
 
+
     private PhysicsObject LisaaTaso()
     {
         PhysicsObject taso = PhysicsObject.CreateStaticObject(TASON_KOKO, TASON_KOKO);
@@ -169,6 +194,7 @@ public class Harjoitustyo2 : PhysicsGame
         taso.Shape = Shape.Rectangle;
         return taso;
     }
+
 
     /// <summary> 
     /// Aliohjelma joka luo peliin pullon
@@ -183,6 +209,7 @@ public class Harjoitustyo2 : PhysicsGame
         return pullo;
     }
 
+
     /// <summary> 
     /// Aliohjelma joka luo peliin maalin
     /// </summary>
@@ -195,6 +222,7 @@ public class Harjoitustyo2 : PhysicsGame
         maali.Tag = "maali";
         return maali;
     }
+
 
     /// <summary> 
     /// Aliohjelma joka luo peliin pelaajan
@@ -212,6 +240,7 @@ public class Harjoitustyo2 : PhysicsGame
 
         return pelaaja1;
     }
+
 
     /// <summary> 
     /// Aliohjelma joka liikuttaa hahmoa tietyllä nopeudella
@@ -235,6 +264,7 @@ public class Harjoitustyo2 : PhysicsGame
         hahmo.Jump(nopeus);
     }
 
+
     /// <summary> 
     /// Aliohjelma joka tuhoaa pullon ja antaa siitä pisteen osuttaessa
     /// </summary>
@@ -243,7 +273,7 @@ public class Harjoitustyo2 : PhysicsGame
     /// <returns> </returns>
     private void OsuPulloon(PhysicsObject hahmo, PhysicsObject kohde)
     {
-        if (kohde.Tag == "pullo")
+        if ((string)kohde.Tag == "pullo")
         {
             // maaliAani.Play();  TODO: tähän joku ääni jos haluaa osumasta semmosen
             //MessageDisplay.Add("Nastrovja!");
@@ -252,6 +282,7 @@ public class Harjoitustyo2 : PhysicsGame
 
         }
     }
+
 
     /// <summary> 
     /// Aliohjelma joka vaihtaa kentän numeroa maaliin osuttaessa
@@ -262,7 +293,7 @@ public class Harjoitustyo2 : PhysicsGame
     private void OsuMaaliin(PhysicsObject hahmo, PhysicsObject kohde)
     {
 
-        if ((kohde.Tag == "maali") && (pisteLaskuri.Value >= 3))
+        if (((string)kohde.Tag == "maali") && (pisteLaskuri.Value >= 3))
         {
             if (kenttaNro < 2)
             {
@@ -274,14 +305,9 @@ public class Harjoitustyo2 : PhysicsGame
                 kenttaNro = 1;
                 Valikko();
             }
-
             // maaliAani.Play();  TODO: tähän joku ääni jos haluaa osumasta semmosen
-            //MessageDisplay.Add("Hienoa, olet maalissa!");
-
         }
-       
     }
-
 
 
     /// <summary> 
@@ -292,7 +318,7 @@ public class Harjoitustyo2 : PhysicsGame
     /// <returns> </returns>
     private void OsuVihuun(PhysicsObject hahmo, PhysicsObject kohde)
     {
-        if (kohde.Tag == "vihollinen")
+        if ((string)kohde.Tag == "vihollinen")
         {
             // maaliAani.Play();  TODO: tähän joku ääni jos haluaa osumasta semmosen
             hahmo.Destroy();
@@ -300,6 +326,7 @@ public class Harjoitustyo2 : PhysicsGame
         }
 
     }
+
 
     /// <summary> 
     /// Aliohjelma joka lisää peliin pistelaskurin
@@ -322,6 +349,7 @@ public class Harjoitustyo2 : PhysicsGame
         Add(pisteNaytto);
     }
 
+
     /// <summary> 
     /// Aliohjelma joka lisää peliin vihollisen joka syntyy tietyn ajan välein randomiin paikkaan
     /// </summary>
@@ -340,6 +368,7 @@ public class Harjoitustyo2 : PhysicsGame
         ajastin.Start(); 
     }
 
+
     /// <summary> 
     /// Aliohjelma joka luo vihollisen randomiin paikkaan
     /// </summary>
@@ -347,45 +376,6 @@ public class Harjoitustyo2 : PhysicsGame
     /// <returns> </returns>
     private void VihollinenTippuu(PhysicsObject vihollinen)
     {
-        // PhysicsObject p = new PhysicsObject(10, 10, Shape.Circle);
         vihollinen.Position = RandomGen.NextVector(Level.BoundingRect);
-        // p.Color = RandomGen.NextColor();
     }
-
-    /// <summary> 
-    /// Aliohjelma joka luo peliin kentän
-    /// </summary>
-    /// <param name=""></param>
-    /// <returns> </returns>
-    private char[,] Kentta1 =
-   {
-        {' ', ' ', 'M', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-        {' ', ' ', '=', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' '},
-        {' ', ' ', ' ', '=', ' ', ' ', '=', ' ', ' ', ' ', ' '},
-        {'*', ' ', ' ', ' ', ' ', '=', ' ', ' ', '=', '=', '*'},
-        {'=', ' ', ' ', ' ', '=', ' ', ' ', '=', ' ', ' ', '='},
-        {' ', '=', ' ', ' ', ' ', '=', ' ', ' ', '*', ' ', ' '},
-        {' ', ' ', '=', ' ', ' ', ' ', '=', ' ', '=', ' ', ' '},
-        {' ', ' ', ' ', '=', ' ', '=', ' ', ' ', ' ', '=', 'N'},
-    };
-
-    /// <summary> 
-    /// Aliohjelma joka luo peliin kentän
-    /// </summary>
-    /// <param name=" "></param>
-    /// <returns> </returns>
-    private char[,] Kentta2 =
-    {
-
-        {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'M', ' '},
-        {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' '},
-        {' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' '},
-        {' ', '*', '=', ' ', ' ', '=', ' ', ' ', ' ', ' ', '*'},
-        {' ', '=', ' ', '=', '=', ' ', ' ', ' ', '=', '=', '='},
-        {' ', ' ', ' ', ' ', ' ', '=', ' ', '=', ' ', ' ', ' '},
-        {' ', 'N', ' ', ' ', ' ', ' ', ' ', '*', '=', '*', '*'},
-        {'=', '=', ' ', '=', ' ', ' ', '=', '=', '=', '=', ' '},
-    };
-
-
 }

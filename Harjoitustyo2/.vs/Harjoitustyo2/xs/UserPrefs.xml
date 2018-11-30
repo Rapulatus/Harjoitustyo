@@ -2,13 +2,13 @@
   <MonoDevelop.Ide.ItemProperties.Harjoitustyo2 PreferredExecutionTarget="Test1" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Harjoitustyo2.cs">
     <Files>
-      <File FileName="Harjoitustyo2.cs" Line="61" Column="5" />
+      <File FileName="Harjoitustyo2.cs" Line="61" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
 </Properties>
