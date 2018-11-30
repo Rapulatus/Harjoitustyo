@@ -3,29 +3,29 @@
 /Library/Frameworks/Xamarin.Mac.framework/Versions/5.0.0.0/lib/mmp/mmp.exe \
 	/verbose \
 	/debug \
-	/output:/Users/Rapumeisteri/Desktop/Harjoitustyo2/Harjoitustyo2/bin/Debug/ \
+	/output:/Users/samulinykanen/Projects/Harjoitustyo/versiohallinta/Harjoitustyo/GitHub/Harjoitustyo/Harjoitustyo2/bin/Debug/ \
 	/name:Harjoitustyo2 \
 	'/profile:Xamarin.Mac,Version=v4.5,Profile=System' \
 	/arch:x86_64 \
 	--http-message-handler=HttpClientHandler \
 	/minos=10.7 \
 	/nolink \
-	/assembly:/Users/Rapumeisteri/Desktop/Harjoitustyo2/packages/Jypeli.MacOS.0.2.3/lib/4.5/Jypeli.dll \
-	/assembly:/Users/Rapumeisteri/Desktop/Harjoitustyo2/packages/Jypeli.Physics2d.MacOS.0.1.6/lib/4.5/Jypeli.Physics2d.dll \
-	/assembly:/Users/Rapumeisteri/Desktop/Harjoitustyo2/packages/Jypeli.MacOS.0.2.3/lib/4.5/MonoGame.Framework.dll \
-	/assembly:/Library/Frameworks/Mono.framework/Versions/5.16.0/lib/mono/4.5-api/mscorlib.dll \
-	/assembly:/Library/Frameworks/Mono.framework/Versions/5.16.0/lib/mono/4.5-api/System.Core.dll \
-	/assembly:/Library/Frameworks/Mono.framework/Versions/5.16.0/lib/mono/4.5-api/System.dll \
-	/assembly:/Library/Frameworks/Mono.framework/Versions/5.16.0/lib/mono/4.5-api/System.Drawing.dll \
-	/assembly:/Library/Frameworks/Mono.framework/Versions/5.16.0/lib/mono/4.5-api/System.Xml.dll \
-	/assembly:/Library/Frameworks/Mono.framework/Versions/5.16.0/lib/mono/4.5-api/System.Xml.Linq.dll \
+	/assembly:/Users/samulinykanen/Projects/Harjoitustyo/versiohallinta/Harjoitustyo/GitHub/Harjoitustyo/packages/Jypeli.MacOS.0.2.3/lib/4.5/Jypeli.dll \
+	/assembly:/Users/samulinykanen/Projects/Harjoitustyo/versiohallinta/Harjoitustyo/GitHub/Harjoitustyo/packages/Jypeli.Physics2d.MacOS.0.1.6/lib/4.5/Jypeli.Physics2d.dll \
+	/assembly:/Users/samulinykanen/Projects/Harjoitustyo/versiohallinta/Harjoitustyo/GitHub/Harjoitustyo/packages/Jypeli.MacOS.0.2.3/lib/4.5/MonoGame.Framework.dll \
+	/assembly:/Library/Frameworks/Mono.framework/Versions/5.12.0/lib/mono/4.5-api/mscorlib.dll \
+	/assembly:/Library/Frameworks/Mono.framework/Versions/5.12.0/lib/mono/4.5-api/System.Core.dll \
+	/assembly:/Library/Frameworks/Mono.framework/Versions/5.12.0/lib/mono/4.5-api/System.dll \
+	/assembly:/Library/Frameworks/Mono.framework/Versions/5.12.0/lib/mono/4.5-api/System.Drawing.dll \
+	/assembly:/Library/Frameworks/Mono.framework/Versions/5.12.0/lib/mono/4.5-api/System.Xml.dll \
+	/assembly:/Library/Frameworks/Mono.framework/Versions/5.12.0/lib/mono/4.5-api/System.Xml.Linq.dll \
 	/assembly:/Library/Frameworks/Xamarin.Mac.framework/Versions/Current/lib/mono/4.5/Xamarin.Mac.dll \
-	/assembly:/Users/Rapumeisteri/Desktop/Harjoitustyo2/packages/Jypeli.MacOS.0.2.3/lib/4.5/Jypeli.dll \
-	/assembly:/Users/Rapumeisteri/Desktop/Harjoitustyo2/packages/Jypeli.Physics2d.MacOS.0.1.6/lib/4.5/Jypeli.Physics2d.dll \
-	/assembly:/Users/Rapumeisteri/Desktop/Harjoitustyo2/packages/Jypeli.MacOS.0.2.3/lib/4.5/MonoGame.Framework.dll \
-	/root-assembly:/Users/Rapumeisteri/Desktop/Harjoitustyo2/Harjoitustyo2/bin/Debug/Harjoitustyo2.exe \
-	/native-reference:/Users/Rapumeisteri/Desktop/Harjoitustyo2/Harjoitustyo2/libSDL2-2.0.0.dylib \
-	/native-reference:/Users/Rapumeisteri/Desktop/Harjoitustyo2/Harjoitustyo2/libopenal.1.dylib \
+	/assembly:/Users/samulinykanen/Projects/Harjoitustyo/versiohallinta/Harjoitustyo/GitHub/Harjoitustyo/packages/Jypeli.MacOS.0.2.3/lib/4.5/Jypeli.dll \
+	/assembly:/Users/samulinykanen/Projects/Harjoitustyo/versiohallinta/Harjoitustyo/GitHub/Harjoitustyo/packages/Jypeli.Physics2d.MacOS.0.1.6/lib/4.5/Jypeli.Physics2d.dll \
+	/assembly:/Users/samulinykanen/Projects/Harjoitustyo/versiohallinta/Harjoitustyo/GitHub/Harjoitustyo/packages/Jypeli.MacOS.0.2.3/lib/4.5/MonoGame.Framework.dll \
+	/root-assembly:/Users/samulinykanen/Projects/Harjoitustyo/versiohallinta/Harjoitustyo/GitHub/Harjoitustyo/Harjoitustyo2/bin/Debug/Harjoitustyo2.exe \
+	/native-reference:/Users/samulinykanen/Projects/Harjoitustyo/versiohallinta/Harjoitustyo/GitHub/Harjoitustyo/Harjoitustyo2/libSDL2-2.0.0.dylib \
+	/native-reference:/Users/samulinykanen/Projects/Harjoitustyo/versiohallinta/Harjoitustyo/GitHub/Harjoitustyo/Harjoitustyo2/libopenal.1.dylib \
 	/sdkroot:/Applications/Xcode.app/Contents/Developer \
-	--cache:/Users/Rapumeisteri/Desktop/Harjoitustyo2/Harjoitustyo2/obj/x86/Debug/mmp-cache \
-	@/Users/Rapumeisteri/Desktop/Harjoitustyo2/Harjoitustyo2/obj/x86/Debug/response-file.rsp \
+	--cache:/Users/samulinykanen/Projects/Harjoitustyo/versiohallinta/Harjoitustyo/GitHub/Harjoitustyo/Harjoitustyo2/obj/x86/Debug/mmp-cache \
+	@/Users/samulinykanen/Projects/Harjoitustyo/versiohallinta/Harjoitustyo/GitHub/Harjoitustyo/Harjoitustyo2/obj/x86/Debug/response-file.rsp \

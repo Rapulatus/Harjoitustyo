@@ -9,6 +9,9 @@ using Jypeli.Widgets;
 /// Harjoitustyo2. PöhnäPukki-peli
 /// @author(s) Samuli Nykänen, Aleksi Kauppinen
 /// versio 6.66
+/// Harjoitustyo2. PöhnäPukki-peli.
+/// @author Samuli Nykänen, Aleksi Kauppinen
+/// versio 30.11.2018
 /// </summary>
 
 public class Harjoitustyo2 : PhysicsGame
@@ -29,6 +32,37 @@ public class Harjoitustyo2 : PhysicsGame
     private Image maaliKuva = LoadImage("Talo");
     private Image vihunKuva = LoadImage("santapaha");
 
+
+    private static readonly Image pelaajanKuva = LoadImage("Pukki");
+    private static readonly Image pulloKuva = LoadImage("beer1");
+    private static readonly Image maaliKuva = LoadImage("Talo");
+    private static readonly Image vihunKuva = LoadImage("santapaha");
+
+    private char[,] Kentta1 =
+  {
+        {' ', ' ', 'M', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+        {' ', ' ', '=', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' '},
+        {' ', ' ', ' ', '=', ' ', ' ', '=', ' ', ' ', ' ', ' '},
+        {'*', ' ', ' ', ' ', ' ', '=', ' ', ' ', '=', '=', '*'},
+        {'=', ' ', ' ', ' ', '=', ' ', ' ', '=', ' ', ' ', '='},
+        {' ', '=', ' ', ' ', ' ', '=', ' ', ' ', '*', ' ', ' '},
+        {' ', ' ', '=', ' ', ' ', ' ', '=', ' ', '=', ' ', ' '},
+        {' ', ' ', ' ', '=', ' ', '=', ' ', ' ', ' ', '=', 'N'},
+    };
+
+
+    private char[,] Kentta2 =
+    {
+        {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'M', ' '},
+        {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' '},
+        {' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' '},
+        {' ', '*', '=', ' ', ' ', '=', ' ', ' ', ' ', ' ', '*'},
+        {' ', '=', ' ', '=', '=', ' ', ' ', ' ', '=', '=', '='},
+        {' ', ' ', ' ', ' ', ' ', '=', ' ', '=', ' ', ' ', ' '},
+        {' ', 'N', ' ', ' ', ' ', ' ', ' ', '*', '=', '*', '*'},
+        {'=', '=', ' ', '=', ' ', ' ', '=', '=', '=', '=', ' '},
+    };
+
     // SoundEffect maaliAani = LoadSoundEffect("maali");
 
 
@@ -40,22 +74,17 @@ public class Harjoitustyo2 : PhysicsGame
 
     public override void Begin()
     {
-        // LuoKentta(mikaKentta);
         SeuraavaKentta();
         Camera.ZoomToLevel();
-        // LuoKentta(mikaKentta);
-        // LisaaNappaimet();
         Valikko();
-
-
         // MediaPlayer.Play("taustamusa");
-
         Camera.Follow(pelaaja1);
         Camera.StayInLevel = true;
         PhoneBackButton.Listen(ConfirmExit, "Lopeta peli");
         Keyboard.Listen(Key.Escape, ButtonState.Pressed, ConfirmExit, "Lopeta peli");
 
     }
+
 
 
 
@@ -83,6 +112,7 @@ public class Harjoitustyo2 : PhysicsGame
         Mouse.ListenOn(kohta1, MouseButton.Left, ButtonState.Pressed, SeuraavaKentta, null);/// Hiiren näppäinkuunnellin
         Mouse.ListenOn(kohta2, MouseButton.Left, ButtonState.Pressed, Exit, null);             /// Hiiren näppäinkuunnellin  
         Mouse.ListenMovement(1.0, ValikossaLiikkuminen, null);                                 /// Hiiren liikkentunnistin
+    }
 
 
     }
@@ -125,7 +155,6 @@ public class Harjoitustyo2 : PhysicsGame
         kentta.Insert(RUUDUN_KOKO, RUUDUN_KOKO);
         Level.CreateBorders();
         Level.Background.CreateGradient(Color.White, Color.Pink);
-
     }
 
 
@@ -137,11 +166,10 @@ public class Harjoitustyo2 : PhysicsGame
     private void SeuraavaKentta()
     {
         ClearAll();
-
         if (kenttaNro == 1) LuoKentta(Kentta1);
         else if (kenttaNro == 2) LuoKentta(Kentta2);
-        //else if (kenttaNro == 3) LuoKentta();
-        //else if (kenttaNro > 2) Exit();
+        // else if (kenttaNro == 3) LuoKentta();
+        // else if (kenttaNro > 2) Exit();
 
         LisaaNappaimet();
         LuoPistelaskuri();
@@ -171,6 +199,7 @@ public class Harjoitustyo2 : PhysicsGame
         ControllerOne.Listen(Button.DPadRight, ButtonState.Down, Liikuta, "Pelaaja liikkuu oikealle", pelaaja1, nopeus);
         ControllerOne.Listen(Button.A, ButtonState.Pressed, Hyppaa, "Pelaaja hyppää", pelaaja1, hyppyNopeus); */
     }
+
 
     private PhysicsObject LisaaTaso()
     {
@@ -294,14 +323,9 @@ public class Harjoitustyo2 : PhysicsGame
                 kenttaNro = 1;
                 Valikko();
             }
-
             // maaliAani.Play();  TODO: tähän joku ääni jos haluaa osumasta semmosen
-            //MessageDisplay.Add("Hienoa, olet maalissa!");
-
         }
-       
     }
-
 
 
     /// <summary> 
@@ -366,6 +390,7 @@ public class Harjoitustyo2 : PhysicsGame
 
 
 
+
     /// <summary> 
     /// Aliohjelma joka luo vihollisen randomiin paikkaan
     /// </summary>
@@ -373,48 +398,9 @@ public class Harjoitustyo2 : PhysicsGame
     /// <returns> </returns>
     private void VihollinenTippuu(PhysicsObject vihollinen)
     {
-        // PhysicsObject p = new PhysicsObject(10, 10, Shape.Circle);
         vihollinen.Position = RandomGen.NextVector(Level.BoundingRect);
-        // p.Color = RandomGen.NextColor();
     }
 
-
-    /// <summary> 
-    /// Aliohjelma joka luo peliin kentän
-    /// </summary>
-    /// <param name=""></param>
-    /// <returns> </returns>
-    private char[,] Kentta1 =
-   {
-        {' ', ' ', 'M', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-        {' ', ' ', '=', ' ', ' ', '=', ' ', ' ', ' ', ' ', ' '},
-        {' ', ' ', ' ', '=', ' ', ' ', '=', ' ', ' ', ' ', ' '},
-        {'*', ' ', ' ', ' ', ' ', '=', ' ', ' ', '=', '=', '*'},
-        {'=', ' ', ' ', ' ', '=', ' ', ' ', '=', ' ', ' ', '='},
-        {' ', '=', ' ', ' ', ' ', '=', ' ', ' ', '*', ' ', ' '},
-        {' ', ' ', '=', ' ', ' ', ' ', '=', ' ', '=', ' ', ' '},
-        {' ', ' ', ' ', '=', ' ', '=', ' ', ' ', ' ', '=', 'N'},
-    };
-
-
-
-    /// <summary> 
-    /// Aliohjelma joka luo peliin kentän
-    /// </summary>
-    /// <param name=" "></param>
-    /// <returns> </returns>
-    private char[,] Kentta2 =
-    {
-
-        {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'M', ' '},
-        {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' '},
-        {' ', ' ', ' ', ' ', ' ', ' ', ' ', '=', ' ', ' ', ' '},
-        {' ', '*', '=', ' ', ' ', '=', ' ', ' ', ' ', ' ', '*'},
-        {' ', '=', ' ', '=', '=', ' ', ' ', ' ', '=', '=', '='},
-        {' ', ' ', ' ', ' ', ' ', '=', ' ', '=', ' ', ' ', ' '},
-        {' ', 'N', ' ', ' ', ' ', ' ', ' ', '*', '=', '*', '*'},
-        {'=', '=', ' ', '=', ' ', ' ', '=', '=', '=', '=', ' '},
-    };
 
 
 }
